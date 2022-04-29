@@ -53,6 +53,8 @@ public class Company{
 
         }
 
+        battery = battery-rechargeableBattery;
+
 
     	return "El total de baterias tradicionales es: " + battery + " y el de baterias recargables es: " + rechargeableBattery;
     }
@@ -64,11 +66,11 @@ public class Company{
 
             if(batteries[i] != null && batteries[i] instanceof Battery){
 
-                str += batteries.toString() + "\n";
+                str += batteries[i].toString() + "\n";
 
             }if(batteries[i] != null && batteries[i] instanceof RechargeableBattery){
 
-                str += batteries.toString() + "\n";
+                str += batteries[i].toString() + "\n";
 
             }
         }
@@ -79,12 +81,22 @@ public class Company{
 	public double calculateUsefulPromLifeCost(){
 
         double prom=0;
+        int cont = 0;
 
-        for(int i=0;i<MAX_BATTERIES;i++) {
+        for(int i=0;i<MAX_BATTERIES;i++){
 
+            if(batteries[i] != null && batteries[i] instanceof RechargeableBattery){
 
+                cont++;
+
+                prom += ((RechargeableBattery)batteries[i]).calculateUsefulLife();
+
+            }
         }
-		return 0.0;
+
+        prom = prom/cont;
+
+		return prom;
 	}
 
 }

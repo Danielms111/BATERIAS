@@ -1,6 +1,6 @@
 package model;
 
-public class RechargeableBattery extends Battery {
+public class RechargeableBattery extends Battery implements Rechargeable{
     public final static char BATTERY_LITIO = 'l';
     public final static char BATTERY_NIQUEL_CADIO = 'n';
     public final static double FACTOR_LITIO = 0.92;
@@ -19,6 +19,7 @@ public class RechargeableBattery extends Battery {
         this.type = type;
     }
 
+    @Override
     public double calculateUsefulLife(){
 
         double factor = 0;
